@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同济大学本科生学科竞赛指南（2026版）· 个人参赛友好版</title>
+<style>
+  :root {
+    --tj-blue: #003f88;
+    --tj-blue-light: #1a5fb4;
+    --tj-blue-pale: #e8f0fe;
+    --tj-gold: #d4a017;
+    --tj-gold-pale: #fdf6e3;
+    --bg: #f5f7fa;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,63,136,0.08);
+    --shadow-hover: 0 6px 24px rgba(0,63,136,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* 顶部 */
+  .hero {
+    background: linear-gradient(135deg, var(--tj-blue) 0%, #0a2d5e 50%, #001f4d 100%);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: rgba(212,160,23,0.12);
+    border-radius: 50%;
+  }
+  .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: 1px; }
+  .hero .subtitle {
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.88;
+    max-width: 700px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero .badge-row {
+    margin-top: 18px;
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+  }
+  .hero .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  .hero .badge.gold {
+    background: rgba(212,160,23,0.25);
+    border-color: rgba(212,160,23,0.5);
+    color: #ffe9a8;
+  }
+
+  /* 工具栏 */
+  .toolbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-box {
+    display: flex; align-items: center;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 0 16px;
+    min-width: 280px;
+    transition: border-color 0.2s;
+  }
+  .search-box:focus-within { border-color: var(--tj-blue-light); }
+  .search-box input {
+    border: none; outline: none; background: transparent;
+    padding: 10px 8px; font-size: 14px; width: 100%;
+    color: var(--text);
+  }
+  .search-box svg { flex-shrink: 0; opacity: 0.5; }
+  .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    white-space: nowrap;
+    color: var(--text-light);
+  }
+  .chip:hover { border-color: var(--tj-blue-light); color: var(--tj-blue); }
+  .chip.active {
+    background: var(--tj-blue);
+    border-color: var(--tj-blue);
+    color: #fff;
+    font-weight: 600;
+  }
+  .chip.solo.active { background: var(--tj-gold); border-color: var(--tj-gold); color: #fff; }
+  .chip.team.active { background: #6366f1; border-color: #6366f1; color: #fff; }
+
+  /* 统计栏 */
+  .stats-bar {
+    max-width: 1200px; margin: 20px auto 0; padding: 0 24px;
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+  }
+  .stat-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 24px;
+    text-align: center;
+    min-width: 140px;
+    box-shadow: var(--shadow);
+  }
+  .stat-item .num { font-size: 24px; font-weight: 700; color: var(--tj-blue); }
+  .stat-item .label { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+  /* 等级分组 */
+  .section-title {
+    max-width: 1200px; margin: 36px auto 0; padding: 0 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-title h2 {
+    font-size: 20px; font-weight: 700; color: var(--tj-blue);
+  }
+  .section-title .line {
+    flex: 1; height: 2px;
+    background: linear-gradient(90deg, var(--tj-blue-pale), transparent);
+  }
+  .section-title .count {
+    font-size: 13px; color: var(--text-light);
+    background: var(--bg);
+    padding: 2px 12px; border-radius: 12px;
+  }
+
+  /* 卡片网格 */
+  .grid {
+    max-width: 1200px; margin: 16px auto 0; padding: 0 24px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+  .card.solo-friendly {
+    border-left: 4px solid var(--tj-gold);
+  }
+  .card.team-friendly {
+    border-left: 4px solid #6366f1;
+  }
+  .card-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 10px; margin-bottom: 10px;
+  }
+  .card-id {
+    font-size: 11px; color: var(--text-light);
+    background: var(--bg); padding: 2px 8px; border-radius: 6px;
+    font-family: "SF Mono", monospace;
+  }
+  .card-level {
+    font-size: 11px; font-weight: 600;
+    padding: 2px 10px; border-radius: 10px;
+  }
+  .level-Aplus { background: #fef3c7; color: #92400e; }
+  .level-A { background: #dbeafe; color: #1e40af; }
+  .level-B { background: #d1fae5; color: #065f46; }
+  .level-C { background: #f3f4f6; color: #4b5563; }
+
+  .card h3 {
+    font-size: 15px; font-weight: 700; line-height: 1.4;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .card .college {
+    font-size: 12px; color: var(--text-light); margin-bottom: 8px;
+  }
+  .card .meta-row {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
+  }
+  .tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 10px;
+    background: var(--tj-blue-pale); color: var(--tj-blue);
+    font-weight: 500;
+  }
+  .tag.solo { background: #fef9c3; color: #854d0e; }
+  .tag.team { background: #e0e7ff; color: #3730a3; }
+  .tag.mixed { background: #fce7f3; color: #9d174d; }
+
+  .card .desc {
+    font-size: 13px; color: var(--text-light); line-height: 1.6;
+    margin-bottom: 12px;
+    flex: 1;
+  }
+
+  /* 新增：竞赛指标 */
+  .metrics {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .metric {
+    flex: 1; min-width: 80px;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .metric .metric-label {
+    font-size: 10px; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .metric .metric-value {
+    font-size: 14px; font-weight: 700; margin-top: 2px;
+  }
+  .metric .metric-value.easy { color: #16a34a; }
+  .metric .metric-value.medium { color: #d97706; }
+  .metric .metric-value.hard { color: #dc2626; }
+  .metric .metric-value.very-hard { color: #991b1b; }
+  .metric .metric-value.rec-high { color: #16a34a; }
+  .metric .metric-value.rec-medium { color: #d97706; }
+  .metric .metric-value.rec-low { color: #9ca3af; }
+
+  /* 建议盒 */
+  .advice-box {
+    background: var(--tj-gold-pale);
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    color: #78350f;
+    margin-bottom: 12px;
+    line-height: 1.55;
+  }
+  .advice-box strong { color: #92400e; }
+
+  .card .links {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .card .links a {
+    font-size: 12px; color: var(--tj-blue-light);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 6px;
+    background: var(--tj-blue-pale);
+    transition: background 0.2s;
+  }
+  .card .links a:hover { background: #d0e2ff; }
+  .card .links a.gold-link {
+    background: var(--tj-gold-pale); color: #92400e;
+  }
+  .card .links a.gold-link:hover { background: #fde68a; }
+  .card .links a.team-link {
+    background: #e0e7ff; color: #3730a3;
+  }
+  .card .links a.team-link:hover { background: #c7d2fe; }
+
+  /* 空状态 */
+  .empty-state {
+    max-width: 1200px; margin: 40px auto;
+    text-align: center; padding: 60px 24px;
+    color: var(--text-light);
+  }
+  .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+
+  /* 页脚 */
+  .footer {
+    max-width: 1200px; margin: 20px auto 40px; padding: 0 24px;
+    font-size: 12px; color: var(--text-light);
+    line-height: 1.8;
+  }
+  .footer .notice {
+    background: #fffbeb; border: 1px solid #fde68a;
+    border-radius: var(--radius); padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .footer .notice strong { color: #92400e; }
+
+  /* 返回顶部 */
+  .back-top {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--tj-blue); color: #fff;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,63,136,0.3);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 200;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 22px; }
+    .grid { grid-template-columns: 1fr; padding: 0 16px 20px; }
+    .toolbar { padding: 10px 12px; gap: 8px; }
+    .search-box { min-width: 100%; }
+    .section-title { padding: 0 16px; }
+    .stats-bar { padding: 0 16px; gap: 10px; }
+    .stat-item { min-width: 100px; padding: 10px 16px; }
+    .metrics { gap: 6px; }
+    .metric { min-width: 60px; padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部 -->
+<div class="hero">
+  <h1>🎓 同济大学本科生学科竞赛指南</h1>
+  <p class="subtitle">基于《同济大学本科生学科竞赛目录（2026版）》整理 · 含获奖比例 · 难度评级 · 推荐度 · 参赛建议</p>
+  <div class="badge-row">
+    <span class="badge">共 255 项竞赛</span>
+    <span class="badge">A+ / A / B / C 四级</span>
+    <span class="badge gold">⭐ 金色边框 = 个人赛友好</span>
+    <span class="badge">🟣 紫色边框 = 团体赛友好</span>
+  </div>
+</div>
+
+<!-- 工具栏 -->
+<div class="toolbar">
+  <div class="search-box">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="searchInput" placeholder="搜索竞赛名称、学院或关键词…">
+  </div>
+  <div class="filter-chips" id="filterChips">
+    <button class="chip active" data-filter="all">全部</button>
+    <button class="chip" data-filter="A+">A+</button>
+    <button class="chip" data-filter="A">A</button>
+    <button class="chip" data-filter="B">B</button>
+    <button class="chip" data-filter="C">C</button>
+    <button class="chip solo" data-filter="solo">⭐ 个人友好</button>
+    <button class="chip team" data-filter="team">🟣 团体赛</button>
+  </div>
+</div>
+
+<!-- 统计 -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-item"><div class="num" id="statTotal">255</div><div class="label">竞赛总数</div></div>
+  <div class="stat-item"><div class="num" id="statSolo">—</div><div class="label">个人友好</div></div>
+  <div class="stat-item"><div class="num" id="statTeam">—</div><div class="label">团体赛</div></div>
+  <div class="stat-item"><div class="num" id="statVisible">255</div><div class="label">当前显示</div></div>
+</div>
+
+<!-- 内容容器 -->
+<div id="contentContainer"></div>
+
+<!-- 页脚 -->
+<div class="footer">
+  <div class="notice">
+    <strong>⚠️ 使用说明：</strong>
+    本页面基于同济大学发布的《本科生学科竞赛目录（2026版）》整理，并融合了公开搜索信息。<br>
+    <strong>获奖比例</strong>数据来自各竞赛官方或高校新闻稿，仅供参考，具体以当年竞赛官方通知为准。<br>
+    <strong>难度评级</strong>基于获奖比例、参赛规模、学科基础要求综合评估：🟢 入门 · 🟡 中等 · 🟠 较难 · 🔴 极难。<br>
+    <strong>推荐度</strong>综合评估参赛性价比、个人发展帮助、备赛难度：⭐⭐⭐⭐⭐ 强烈推荐 · ⭐ 谨慎考虑。<br>
+    <strong>官网链接</strong>来自各竞赛官方或高校通知页面，建议报名前通过<strong>同济大学创新创业学院官网</strong>或<strong>所在学院教务通知</strong>确认最终报名链接。<br>
+    部分竞赛（如数学建模、电子设计等）为团队赛，但团队成员中的某一角色仍可由个人深度参与，请根据自身情况选择。
+  </div>
+  <p>📌 数据来源：《同济大学本科生学科竞赛目录（2026版）》 | 整理时间：2026年</p>
+</div>
+
+<button class="back-top" id="backTop" title="返回顶部">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+// ========== 竞赛数据 ==========
+// 字段说明：
+//   awardRate: 获奖比例（字符串）
+//   difficulty: 难度等级（easy/medium/hard/very-hard）
+//   recommend: 推荐度（1-5，5最高）
+//   type: solo（个人）/ team（团队）/ mixed（个人团队均可）
+// ==========
+const competitions = [
+  // ===== A+ =====
+  {id:"2026001",name:"中国国际大学生创新大赛（2026）",level:"A+",college:"创新创业学院",type:"team",solo:false,
+   awardRate:"国奖约0.081%，金奖<0.01%",difficulty:"very-hard",recommend:5,
+   desc:"原名“互联网+”大学生创新创业大赛，教育部等十二部委主办。覆盖人工智能、绿色能源、生物医药等前沿领域。",
+   website:"https://cy.ncss.cn",
+   advice:"团队赛（3-15人），需跨学科组队。个人可担任技术负责人或商业负责人。获奖率极低，但含金量顶级，对保研、创业均有巨大帮助。建议大一开始积累项目，大二大三全力冲刺。",
+   tags:["创新创业","国家级","国际级"]},
+  {id:"2026002",name:"“挑战杯”中国大学生创业计划竞赛",level:"A+",college:"团委",type:"team",solo:false,
+   awardRate:"国奖约2-3%",difficulty:"very-hard",recommend:5,
+   desc:"“小挑”，侧重创业计划与商业价值，聚焦将科技成果转化为市场项目。每两年一届。",
+   website:"https://www.tiaozhanbei.net/",
+   advice:"团队赛，团队不超过10人。揭榜挂帅专项赛可个人参赛。建议有核心技术或商业模式的同学牵头组队，文科生可负责商业计划书与路演。",
+   tags:["创业计划","国家级","揭榜挂帅"]},
+  {id:"2026003",name:"中国青年科技创新“揭榜挂帅”擂台赛",level:"A+",college:"团委",type:"mixed",solo:true,
+   awardRate:"视榜单而定",difficulty:"hard",recommend:4,
+   desc:"挑战杯专项赛，以个人或团队形式参赛，每个团队不超过10人。参赛者年龄40周岁以下。",
+   website:"https://2026.tiaozhanbei.net",
+   advice:"⭐ 可个人参赛！适合有明确技术攻关方向、能独立完成方案设计的同学。建议提前研究榜单题目，选择与自身专业高度匹配的课题。",
+   tags:["科技创新","揭榜挂帅","可个人"]},
+
+  // ===== A 级 =====
+  {id:"2026004",name:"全国大学生金相技能大赛",level:"A",college:"材料科学与工程学院",type:"team",solo:false,
+   awardRate:"一等奖约0.7‰",difficulty:"hard",recommend:3,
+   desc:"材料学科经典赛事，考察金相试样制备与显微组织分析能力。",
+   website:"http://www.jxjsds.com",
+   advice:"通常为团队赛，但校内选拔可能设个人赛环节。动手能力要求高，适合材料、机械等专业对金相制备感兴趣的同学。备赛周期约2-3个月，重在反复练习。",
+   tags:["材料","技能操作"]},
+  {id:"2026005",name:"全国大学生测绘学科创新创业智能大赛",level:"A",college:"测绘与地理信息学院",type:"team",solo:false,
+   awardRate:"特等奖5%、一等奖10%、二等奖15%",difficulty:"medium",recommend:4,
+   desc:"测绘学科创新创业类竞赛，涵盖智能测绘、地理信息应用等方向。",
+   website:"http://www.cehuijingsai.com",
+   advice:"团队赛为主，建议测绘、地理信息、计算机等专业交叉组队。获奖率约30%，在A类竞赛中属于中等偏上，性价比不错。适合测绘类专业同学作为主力赛事。",
+   tags:["测绘","创新创业"]},
+  {id:"2026006",name:"iCAN大学生创新创业大赛",level:"A",college:"创新创业学院",type:"team",solo:false,
+   awardRate:"国奖一等奖0.25%、三等奖1.8%",difficulty:"very-hard",recommend:3,
+   desc:"国际大学生创新创业大赛，注重原创科技作品与商业价值。",
+   website:"http://www.ican-contest.org",
+   advice:"团队赛，建议3-5人。国奖获奖率很低，但省奖相对容易。个人若有硬件/软件作品原型，可牵头组建团队。建议先参加校内选拔积累经验。",
+   tags:["创新创业","科技作品"]},
+  {id:"2026007",name:"全国大学生创新年会",level:"A",college:"创新创业学院",type:"mixed",solo:true,
+   awardRate:"入选即获奖",difficulty:"medium",recommend:4,
+   desc:"教育部主办的本科生创新成果展示与交流平台，以学术论文、展示项目等形式参与。",
+   website:"https://www.edu.cn",
+   advice:"⭐ 可以个人学术成果申报，适合有国创项目或高质量论文的同学。入选即获国家级认可，对保研加分帮助大。建议大二大三申请国创项目后积极申报。",
+   tags:["学术交流","创新成果","可个人"]},
+  {id:"2026008",name:"全国大学生工程实践与创新能力大赛（2026）",level:"A",college:"创新创业学院",type:"team",solo:false,
+   awardRate:"国赛晋级率约4.3%，金奖<2%",difficulty:"hard",recommend:4,
+   desc:"工程训练综合能力竞赛升级版，涵盖智能物流、飞行器设计、企业运营仿真等赛项。",
+   website:"http://www.gcxl.edu.cn",
+   advice:"团队赛，建议工科各专业混合组队。国赛晋级率仅4.3%，金奖率不足2%，难度较大。但分赛项多样，可选择与专业匹配的赛道。个人可专注某一模块（如控制、机械设计）。",
+   tags:["工程实践","创新"]},
+  {id:"2026009",name:"中国大学生机械工程创新创意大赛-智能制造赛",level:"A",college:"创新创业学院",type:"team",solo:false,
+   awardRate:"一等奖约8%",difficulty:"medium",recommend:4,
+   desc:"面向智能制造领域的机械工程创新赛事，涵盖数字孪生、智能产线等方向。",
+   website:"http://www.cmes.org",
+   advice:"团队赛，建议机械、自动化、计算机专业联合组队。一等奖约8%，在A类竞赛中难度适中。智能制造方向就业前景好，建议机械类专业同学积极参与。",
+   tags:["智能制造","机械工程"]},
+  {id:"2026010",name:"“西门子杯”中国智能制造挑战赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"特等奖约1%，晋级国赛约8.7%",difficulty:"hard",recommend:4,
+   desc:"西门子冠名，聚焦智能制造、工业自动化、过程控制等方向。",
+   website:"http://www.siemenscup.com",
+   advice:"团队赛，通常2-3人。晋级国赛率约8.7%，特等奖仅1%。适合自动化、电气、机械等专业。企业认可度高，获奖对就业帮助大。",
+   tags:["智能制造","工业自动化"]},
+  {id:"2026011",name:"VEX机器人全国精英赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"视赛区而定",difficulty:"medium",recommend:3,
+   desc:"VEX机器人竞赛体系，涵盖工程挑战、技能挑战等。",
+   website:"https://www.vexrobotics.com",
+   advice:"团队赛，建议5-8人（机械、编程、操作手等分工）。个人可专注编程或机械设计。适合对机器人竞赛有热情的同学，需要较多时间投入搭建和调试。",
+   tags:["机器人","VEX"]},
+  {id:"2026012",name:"大学生新一代信息通信科技大赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"省奖约30%",difficulty:"medium",recommend:4,
+   desc:"原“大唐杯”，聚焦5G/6G、信息通信技术应用。",
+   website:"http://www.tupt.edu.cn",
+   advice:"团队赛，建议通信、电子、计算机专业组队。省奖获奖率较高，适合通信专业同学作为保底赛事。国赛含金量高，建议全力冲刺。",
+   tags:["通信","5G"]},
+  {id:"2026013",name:"国际大学生智能农业装备创新大赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"国际级农业装备创新赛事，涵盖智能农机、精准农业等。",
+   website:"http://www.iaec.org.cn",
+   advice:"团队赛，建议农业工程、机械、自动化、计算机交叉组队。适合对智慧农业方向感兴趣的同学，竞争相对温和。",
+   tags:["农业装备","国际级"]},
+  {id:"2026014",name:"华为ICT大赛",level:"A",college:"电子与信息工程学院",type:"mixed",solo:true,
+   awardRate:"淘汰率>98%",difficulty:"hard",recommend:5,
+   desc:"华为ICT大赛，涵盖网络、云、计算、AI等赛道。实践赛有个人赛环节。",
+   website:"https://e.huawei.com/cn/talent/ict-academy/competition",
+   advice:"⭐ 实践赛含个人赛环节，适合网络、云计算、AI方向的同学。淘汰率超98%，含金量极高。建议先考取HCIA/HCIP认证，获奖对进入华为及ICT行业帮助极大。",
+   tags:["ICT","华为","含个人赛"]},
+  {id:"2026015",name:"全国大学生电子设计竞赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"国家一等奖约1.9%，二等奖约5.5%",difficulty:"very-hard",recommend:5,
+   desc:"4天3夜封闭式竞赛，完成硬件电路设计、软件算法与设计报告。教育部与工信部联合主办。",
+   website:"http://nuedc.xjtu.edu.cn",
+   advice:"团队赛（3人一组），可跨专业。国家奖获奖率约7.4%，但含金量顶级，是电子类学生最具说服力的竞赛。个人若硬件/软件有专长，可作为核心队员。建议提前积累STM32/PCB经验，大二开始准备。",
+   tags:["电子设计","硬件","4天3夜"]},
+  {id:"2026016",name:"全国大学生集成电路创新创业大赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"国家级一等奖<1.2%",difficulty:"very-hard",recommend:4,
+   desc:"集成电路领域最大规模高校赛事，分A组（本科生）和B组（研究生）。",
+   website:"http://univ.ciiec.com",
+   advice:"团队赛，建议微电子、电子、计算机专业组队。本科生只能报A组题目。一等奖获奖率不足1.2%，难度极大，但集成电路是国家战略方向，获奖对进入芯片行业帮助很大。",
+   tags:["集成电路","芯片"]},
+  {id:"2026017",name:"全国大学生嵌入式芯片与系统设计竞赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"一等奖约1.1%，二等奖2.2%，三等奖3.8%",difficulty:"hard",recommend:4,
+   desc:"嵌入式系统设计竞赛，涵盖芯片应用、系统开发等方向。",
+   website:"http://www.socchina.net",
+   advice:"团队赛，建议电子、计算机、自动化专业组队。总获奖率约7%，难度较大但嵌入式方向就业面广。个人可专注嵌入式软件开发。",
+   tags:["嵌入式","芯片"]},
+  {id:"2026018",name:"全国大学生物联网设计竞赛",level:"A",college:"电子与信息工程学院",type:"mixed",solo:true,
+   awardRate:"全国一等奖约0.88%",difficulty:"very-hard",recommend:4,
+   desc:"以物联网技术应用为核心的学科竞赛，可以个人或团队方式参加，团队不超过4人。",
+   website:"http://iot.sjtu.edu.cn",
+   advice:"⭐ 可个人参赛！适合有物联网项目经验、能独立完成原型开发的同学。全国一等奖获奖率仅0.88%，竞争极为激烈，但华为等企业高度认可。建议有硬件+云平台经验的同学参加。",
+   tags:["物联网","可个人","含个人赛"]},
+  {id:"2026019",name:"全国大学生智能汽车竞赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"全国一等奖约3.67%",difficulty:"hard",recommend:4,
+   desc:"以智能汽车为对象的创意性科技竞赛，涵盖竞速、创意等组别。",
+   website:"http://www.smartcarrace.com",
+   advice:"团队赛（3人），建议自动化、车辆、计算机专业组队。一等奖率约3.67%，难度较大。个人可专注控制算法或硬件设计。竞赛周期长（约6-8个月），需要持续投入。",
+   tags:["智能汽车","控制"]},
+  {id:"2026020",name:"全球校园人工智能算法精英大赛",level:"A",college:"电子与信息工程学院",type:"mixed",solo:true,
+   awardRate:"视赛道而定",difficulty:"hard",recommend:4,
+   desc:"全球性AI算法竞赛，涵盖计算机视觉、NLP、强化学习等赛道。",
+   website:"http://www.gcaaai.org",
+   advice:"⭐ 算法赛道通常为个人赛！适合有AI/ML基础、Kaggle经验的同学。算法类竞赛获奖对进入AI行业帮助大，建议有Python/深度学习基础的同学尝试。",
+   tags:["人工智能","算法","含个人赛"]},
+  {id:"2026021",name:"睿抗机器人开发者大赛（RAICOM）",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"视赛道而定",difficulty:"medium",recommend:3,
+   desc:"原RoboCom，涵盖机器人编程、工程竞技、数字创意等赛道。",
+   website:"https://www.robocom.com.cn",
+   advice:"团队赛为主，部分赛道可个人参赛。适合机器人、自动化、计算机专业参与。赛道多样，可选择编程、设计等方向。",
+   tags:["机器人","开发者"]},
+  {id:"2026022",name:"中国高校智能机器人创意大赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"一等奖约20%（国赛入围者中）",difficulty:"medium",recommend:4,
+   desc:"以智能机器人创意设计与制作为核心的竞赛。",
+   website:"http://www.robotcontest.cn",
+   advice:"团队赛，建议机械、电子、计算机、设计专业交叉组队。国赛入围后一等奖率约20%，相对友好。创意类赛道对设计能力也有要求，适合跨专业组队。",
+   tags:["机器人","创意"]},
+  {id:"2026023",name:"中国机器人大赛暨RoboCup机器人世界杯中国赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"中国自动化协会主办，国内影响力最大的机器人学科竞赛之一。",
+   website:"http://www.robocup.org.cn",
+   advice:"团队赛，建议机器人、自动化、AI专业组队。总获奖率约30%，在机器人竞赛中属于中等难度。个人可专注某一技术模块（视觉、控制、机械）。",
+   tags:["机器人","RoboCup"]},
+  {id:"2026024",name:"中国机器人及人工智能大赛",level:"A",college:"电子与信息工程学院",type:"team",solo:false,
+   awardRate:"视赛道而定",difficulty:"medium",recommend:3,
+   desc:"涵盖机器人竞技、AI应用、创新设计等赛道。",
+   website:"http://www.caairobot.com",
+   advice:"团队赛，建议跨学科组队。个人可负责算法或硬件模块。赛道丰富，可选择与自身技能匹配的方向。",
+   tags:["机器人","AI"]},
+  {id:"2026025",name:"SAMPLE 2026 Student Bridge Contest",level:"A",college:"航空航天与力学学院",type:"team",solo:false,
+   awardRate:"国际赛事，视参赛规模而定",difficulty:"hard",recommend:3,
+   desc:"国际超轻复合材料桥梁/机翼学生竞赛，SAMPE主办。",
+   website:"https://www.sampe.org",
+   advice:"团队赛，建议航空航天、力学、材料专业组队。国际赛事，需要较强英语沟通能力。适合有复合材料研究背景的同学。",
+   tags:["复合材料","国际级"]},
+  {id:"2026026",name:"第十八届SAMPLE国际超轻复合材料桥梁/机翼学生竞赛",level:"A",college:"航空航天与力学学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"hard",recommend:3,
+   desc:"同上，国际级复合材料结构设计竞赛。",
+   website:"https://www.sampe.org",
+   advice:"团队赛，注重材料选择、结构优化与制作工艺。适合力学、材料、航空专业同学，建议有实验室支持。",
+   tags:["复合材料","国际级"]},
+  {id:"2026027",name:"全国大学生化工设计竞赛",level:"A",college:"化学科学与工程学院",type:"team",solo:false,
+   awardRate:"全国一等奖约2.7%",difficulty:"hard",recommend:5,
+   desc:"化工领域级别最高、影响力最大的设计竞赛，每队5人。",
+   website:"http://iche.zju.edu.cn",
+   advice:"团队赛（5人），建议化工、机械、经管跨学科组队。全国一等奖率约2.7%，但化工专业认可度极高，是化工学子必争赛事。个人可负责工艺设计或经济分析。备赛周期约6个月。",
+   tags:["化工设计","团队5人"]},
+  {id:"2026028",name:"全国大学生化工实验大赛",level:"A",college:"化学科学与工程学院",type:"team",solo:false,
+   awardRate:"约30-50%",difficulty:"medium",recommend:3,
+   desc:"化工实验技能竞赛，涵盖理论、仿真与实操。",
+   website:"http://www.cteic.com",
+   advice:"团队赛，适合化工专业动手能力强的同学。获奖率相对较高，可作为化工设计竞赛的补充。",
+   tags:["化工实验"]},
+  {id:"2026029",name:"上海大学生化学实验竞赛暨实验创新设计竞赛",level:"A",college:"化学科学与工程学院",type:"mixed",solo:true,
+   awardRate:"省部级约30%",difficulty:"medium",recommend:3,
+   desc:"省部级化学实验竞赛，含实验操作与创新设计环节。",
+   website:"http://www.shec.edu.cn",
+   advice:"⭐ 实验操作环节通常为个人赛！适合化学专业实验技能扎实的同学。省部级赛事，获奖相对容易，可作为国赛热身。",
+   tags:["化学实验","省部级","含个人赛"]},
+  {id:"2026030",name:"全国大学生能源经济学术创意大赛",level:"A",college:"环境科学与工程学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"能源经济领域学术创意竞赛，可个人或团队提交论文/调研报告。",
+   website:"http://www.ceec.org.cn",
+   advice:"⭐ 可个人参赛！适合对能源经济、碳中和政策感兴趣的同学。论文类竞赛，适合善于写作和数据分析的同学。能源经济是热门方向，对经管、环境专业同学友好。",
+   tags:["能源经济","学术","可个人"]},
+  {id:"2026031",name:"全国三维数字化创新设计大赛",level:"A",college:"环境科学与工程学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"3D数字化设计竞赛，涵盖数字工业、数字人居等方向。",
+   website:"http://www.3ddl.net",
+   advice:"⭐ 可个人参赛！适合掌握SolidWorks/Blender/Unity等工具的同学。设计类竞赛，作品说话，适合有建模和渲染能力的同学。",
+   tags:["3D设计","数字化","可个人"]},
+  {id:"2026032",name:"一带一路暨金砖国家技能发展与技术创新大赛",level:"A",college:"环境科学与工程学院",type:"team",solo:false,
+   awardRate:"视赛项而定",difficulty:"medium",recommend:3,
+   desc:"国际级技能发展与技术创新赛事，涵盖多个赛项。",
+   website:"http://www.brskills.org",
+   advice:"团队赛为主，部分赛项可个人。适合有技能特长的同学。国际赛事，有跨文化交流机会。",
+   tags:["国际级","技能"]},
+  {id:"2026033",name:"第二十五届全国大学生机器人大赛ROBOMASTER",level:"A",college:"机械工程与机器人学院",type:"team",solo:false,
+   awardRate:"视赛区而定",difficulty:"hard",recommend:5,
+   desc:"机甲大师赛，以战队形式进行机器人对抗。",
+   website:"https://www.robomaster.com",
+   advice:"大型团队赛（通常10+人），分工极细。个人可加入视觉、电控、机械等组。备赛周期长（全年），但对工程能力提升极大，是机器人爱好者的顶级平台。建议大一即可加入校内战队。",
+   tags:["机器人","对抗赛","大团队"]},
+  {id:"2026034",name:"第十二届全国大学生机械创新设计大赛",level:"A",college:"机械工程与机器人学院",type:"team",solo:false,
+   awardRate:"约30-40%",difficulty:"hard",recommend:4,
+   desc:"机械创新设计竞赛，主题每届不同，需完成实物制作。",
+   website:"http://www.umic.edu.cn",
+   advice:"团队赛，建议机械、电子、工业设计专业组队。需要实物制作，投入较大（经费+时间）。适合有实验室支持、动手能力强的同学。",
+   tags:["机械创新","实物制作"]},
+  {id:"2026035",name:"第十九届全国大学生先进成图技术与产品信息建模创新大赛",level:"A",college:"机械工程与机器人学院",type:"mixed",solo:true,
+   awardRate:"个人一等奖约8%，二等奖12%，三等奖20%",difficulty:"medium",recommend:5,
+   desc:"成图技术（工程制图）与产品信息建模竞赛，含个人赛和团体赛。",
+   website:"http://www.chengtudasai.com",
+   advice:"⭐ 含个人赛！适合工程制图基础扎实、熟练使用CAD/SolidWorks的同学。个人奖获奖率约40%，是A类竞赛中获奖率较高的。强烈推荐机械、土木等专业大二同学参加。",
+   tags:["成图技术","CAD","含个人赛"]},
+  {id:"2026036",name:"全国大学生节能减排社会实践与科技竞赛",level:"A",college:"机械工程与机器人学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"教育部高教司主办，以节能减排为主题的社会实践与科技作品竞赛。",
+   website:"http://www.jienengjianpai.org",
+   advice:"团队赛，建议能源、环境、机械、经管跨学科组队。主题契合国家双碳战略，获奖对保研有帮助。社会实践类适合善于调研和写作的同学。",
+   tags:["节能减排","社会实践"]},
+  {id:"2026037",name:"中国大学生机械工程创新创意大赛-工业工程与精益管理创新赛",level:"A",college:"机械工程与机器人学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"工业工程与精益管理方向，考察生产系统优化与改善方案。",
+   website:"http://www.cmes.org",
+   advice:"团队赛，建议工业工程、机械、管理专业组队。适合对生产管理、流程优化感兴趣的同学。",
+   tags:["工业工程","精益管理"]},
+  {id:"2026038",name:"中国大学生机械工程创新创意大赛-机械产品数字化设计赛",level:"A",college:"机械工程与机器人学院",type:"team",solo:false,
+   awardRate:"一等奖约8%",difficulty:"medium",recommend:3,
+   desc:"机械产品数字化设计与仿真竞赛。",
+   website:"http://www.cmes.org",
+   advice:"团队赛，建议机械、工业设计专业组队。数字化设计方向就业前景好，适合对CAD/CAE感兴趣的同学。",
+   tags:["数字化设计","机械"]},
+  {id:"2026039",name:"中国大学生机械工程创新创意大赛-物流技术创意赛",level:"A",college:"机械工程与机器人学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"物流技术与装备创意设计竞赛。",
+   website:"http://www.cmes.org",
+   advice:"团队赛，建议物流工程、机械、自动化专业组队。适合对智慧物流方向感兴趣的同学。",
+   tags:["物流技术","机械"]},
+  {id:"2026040",name:"“中国软件杯”大学生软件设计大赛",level:"A",college:"计算机科学与技术学院",type:"team",solo:false,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"工信部主办，以企业命题为主的软件设计竞赛。",
+   website:"http://www.cnsoftbei.com",
+   advice:"团队赛，建议计算机、软件工程专业组队。企业命题贴近实际开发，对就业有帮助。个人可负责前端/后端/算法某一方向。",
+   tags:["软件设计","企业命题"]},
+  {id:"2026041",name:"ACM-ICPC国际大学生程序设计竞赛",level:"A",college:"计算机科学与技术学院",type:"team",solo:false,
+   awardRate:"区域赛约10-15%获奖",difficulty:"very-hard",recommend:5,
+   desc:"全球最具影响力的大学生程序设计竞赛，3人一队，5小时上机编程。",
+   website:"https://icpc.global",
+   advice:"团队赛（3人），需极强算法与配合。个人若算法突出，可作为队内主力。含金量计算机领域顶级，建议从大一开始刷题（Codeforces/牛客），大二组队参赛。",
+   tags:["程序设计","算法","ICPC"]},
+  {id:"2026042",name:"百度之星·程序设计大赛",level:"A",college:"计算机科学与技术学院",type:"mixed",solo:true,
+   awardRate:"初赛约30%晋级",difficulty:"hard",recommend:4,
+   desc:"百度主办的程序设计竞赛，含个人赛和团队赛。",
+   website:"https://astar.baidu.com",
+   advice:"⭐ 初赛通常为个人赛！适合算法基础扎实的同学。企业赛事，获奖有机会获得百度实习/校招绿色通道。",
+   tags:["程序设计","百度","含个人赛"]},
+  {id:"2026043",name:"全国大学生计算机系统能力大赛",level:"A",college:"计算机科学与技术学院",type:"team",solo:false,
+   awardRate:"约20-30%",difficulty:"hard",recommend:4,
+   desc:"系统能力大赛，涵盖操作系统、编译系统、数据库等赛道。",
+   website:"http://www.syscontest.com",
+   advice:"团队赛，建议计算机、软件工程专业组队。系统能力培养对计算机专业核心竞争力提升极大。个人可负责内核/编译器某一模块。",
+   tags:["系统能力","OS","编译"]},
+  {id:"2026044",name:"全国大学生信息安全竞赛",level:"A",college:"计算机科学与技术学院",type:"team",solo:false,
+   awardRate:"总体获奖率不足18%",difficulty:"hard",recommend:4,
+   desc:"信息安全领域竞赛，含作品赛和创新实践赛。",
+   website:"http://www.ciscn.cn",
+   advice:"团队赛，建议信息安全、计算机、软件工程专业组队。获奖率约18%，难度较大。个人可负责渗透/逆向/密码学方向。网络安全人才缺口大，获奖就业优势明显。",
+   tags:["信息安全","CTF"]},
+  {id:"2026045",name:"全国大学生信息安全与对抗技术竞赛",level:"A",college:"计算机科学与技术学院",type:"mixed",solo:true,
+   awardRate:"总决赛约15.5%",difficulty:"hard",recommend:3,
+   desc:"信息安全对抗类竞赛，含个人赛和团队赛。",
+   website:"http://www.iscc.org.cn",
+   advice:"⭐ 含个人赛！适合有CTF基础的同学。个人赛可独立参赛，适合自学能力强的同学。",
+   tags:["信息安全","对抗","含个人赛"]},
+  {id:"2026046",name:"中国大学生服务外包创新创业大赛",level:"A",college:"计算机科学与技术学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"服务外包领域创新创业竞赛，企业命题为主。",
+   website:"http://www.fwwb.org.cn",
+   advice:"团队赛，建议计算机、软件、管理专业组队。企业命题，注重实用性和商业价值。",
+   tags:["服务外包","创新创业"]},
+  {id:"2026047",name:"中国大学生计算机设计大赛",level:"A",college:"计算机科学与技术学院",type:"mixed",solo:true,
+   awardRate:"国赛一等奖≤5%",difficulty:"hard",recommend:5,
+   desc:"计算机设计类竞赛，涵盖软件应用、数字媒体、AI应用等。",
+   website:"http://www.jsjds.com.cn",
+   advice:"⭐ 可个人参赛！适合有完整作品（软件/网站/App/游戏）的同学。国赛一等奖率≤5%，但省赛获奖率较高。建议先完成一个高质量作品，再参赛。",
+   tags:["计算机设计","可个人"]},
+  {id:"2026048",name:"中国高校计算机大赛",level:"A",college:"计算机科学与技术学院",type:"mixed",solo:true,
+   awardRate:"视赛道而定",difficulty:"hard",recommend:4,
+   desc:"涵盖微信小程序、大数据、AI、网络技术等系列赛事。",
+   website:"http://www.c4best.cn",
+   advice:"⭐ 部分赛道可个人参赛！适合有特定技术方向特长的同学。微信小程序赛道适合有全栈能力的同学，大数据赛道适合有数据分析基础的同学。",
+   tags:["计算机","多赛道","含个人赛"]},
+  {id:"2026049",name:"2026同济大学国际建造节",level:"A",college:"建筑与城市规划学院",type:"team",solo:false,
+   awardRate:"视参赛规模而定",difficulty:"medium",recommend:4,
+   desc:"同济主办的国际建造节，以实体建造为特色。",
+   website:"https://caup.tongji.edu.cn",
+   advice:"团队赛，建议建筑、土木、设计专业组队。同济主办，校内学生有主场优势。实体建造需要动手能力和团队协作。",
+   tags:["建造","国际级","同济主办"]},
+  {id:"2026050",name:"UIA世界大学生建筑设计竞赛",level:"A",college:"建筑与城市规划学院",type:"mixed",solo:true,
+   awardRate:"国际赛事，视参赛规模而定",difficulty:"hard",recommend:4,
+   desc:"国际建筑师协会主办的世界大学生建筑设计竞赛。",
+   website:"https://www.uia-architectes.org",
+   advice:"⭐ 可个人参赛！适合建筑学专业有设计功底的同学。国际顶级设计竞赛，获奖对申请海外名校帮助极大。建议有高质量作品集后参赛。",
+   tags:["建筑设计","国际级","可个人"]},
+  {id:"2026051",name:"UIA-霍普杯国际大学生建筑设计竞赛",level:"A",college:"建筑与城市规划学院",type:"mixed",solo:true,
+   awardRate:"国际赛事，视参赛规模而定",difficulty:"hard",recommend:4,
+   desc:"UIA与霍普杯联合举办的国际建筑设计竞赛。",
+   website:"http://www.uia-hopecup.com",
+   advice:"⭐ 可个人参赛！适合建筑、城规专业同学。国际赛事，评委阵容强，获奖含金量高。建议有成熟设计方案后参赛。",
+   tags:["建筑设计","国际级","可个人"]},
+  {id:"2026052",name:"WUPENICITY城市可持续调研报告国际竞赛（智慧低碳交通）",level:"A",college:"建筑与城市规划学院",type:"mixed",solo:true,
+   awardRate:"国际赛事",difficulty:"medium",recommend:4,
+   desc:"世界规划教育组织主办，城市可持续调研报告竞赛。",
+   website:"https://www.wupen.org",
+   advice:"⭐ 可个人参赛！适合城规、交通、环境专业同学。调研报告类竞赛，适合善于调研和写作的同学。智慧低碳交通是热门方向。",
+   tags:["城市调研","国际级","可个人"]},
+  {id:"2026053",name:"WUPENICITY城市设计学生作业国际竞赛",level:"A",college:"建筑与城市规划学院",type:"mixed",solo:true,
+   awardRate:"国际赛事",difficulty:"hard",recommend:4,
+   desc:"世界规划教育组织主办的城市设计学生作业竞赛。",
+   website:"https://www.wupen.org",
+   advice:"⭐ 可个人参赛！适合城规、建筑专业同学。设计作业类竞赛，作品集导向。国际赛事，对留学申请有帮助。",
+   tags:["城市设计","国际级","可个人"]},
+  {id:"2026054",name:"全国大学生花园设计建造竞赛",level:"A",college:"建筑与城市规划学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"花园设计与实体建造竞赛。",
+   website:"http://www.chsla.org.cn",
+   advice:"团队赛，建议风景园林、建筑、设计专业组队。需要实体建造，投入较大。适合有植物学基础和动手能力的同学。",
+   tags:["花园设计","建造"]},
+  {id:"2026055",name:"全国数字建筑创新应用大赛",level:"A",college:"建筑与城市规划学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"数字建筑领域创新应用竞赛，含BIM、数字孪生等方向。",
+   website:"http://www.ccbim.org",
+   advice:"⭐ 可个人参赛！适合掌握Revit/BIM技术的同学。BIM是建筑行业数字化转型核心技能，获奖对就业有帮助。",
+   tags:["数字建筑","BIM","可个人"]},
+  {id:"2026056",name:"亚洲建筑师协会学生设计竞赛",level:"A",college:"建筑与城市规划学院",type:"mixed",solo:true,
+   awardRate:"国际赛事",difficulty:"hard",recommend:3,
+   desc:"亚洲建筑师协会主办的学生设计竞赛。",
+   website:"https://www.arcasia.org",
+   advice:"⭐ 可个人参赛！适合建筑学专业同学。亚洲区域赛事，竞争相对欧美赛事温和。",
+   tags:["建筑设计","亚洲","可个人"]},
+  {id:"2026057",name:"第十届全国大学生物流设计大赛",level:"A",college:"交通学院",type:"team",solo:false,
+   awardRate:"初赛晋级率约15%",difficulty:"hard",recommend:4,
+   desc:"物流系统设计与优化竞赛。",
+   website:"http://www.clpp.org.cn",
+   advice:"团队赛，建议物流、交通、管理专业组队。每两年一届，晋级国赛率约15%。物流行业认可度高，适合物流管理专业同学。",
+   tags:["物流设计"]},
+  {id:"2026058",name:"第十届全国高校智能交通创新与创业大赛",level:"A",college:"交通学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"智能交通领域创新与创业竞赛。",
+   website:"http://www.itsa.org.cn",
+   advice:"团队赛，建议交通、计算机、自动化专业组队。智能交通是交通行业热门方向，适合交通工程专业同学。",
+   tags:["智能交通","创新创业"]},
+  {id:"2026059",name:"全国大学生电子商务“创新、创意及创业”挑战赛",level:"A",college:"经济与管理学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"三创赛，电子商务领域创新创业竞赛。",
+   website:"http://www.3chuang.net",
+   advice:"团队赛，建议经管、计算机、设计专业组队。适合对电商、互联网商业模式感兴趣的同学。文科生可负责商业策划和运营。",
+   tags:["电子商务","创新创业"]},
+  {id:"2026060",name:"全国大学生市场调查与分析大赛",level:"A",college:"经济与管理学院",type:"mixed",solo:true,
+   awardRate:"全国一等奖0.27%，二等奖0.38%",difficulty:"very-hard",recommend:4,
+   desc:"知识赛为个人在线网考，实践赛为团体赛（3-5人）。",
+   website:"http://www.china-cssc.org",
+   advice:"⭐ 知识赛为个人赛！实践赛需组队。知识赛通过率较高，实践赛国奖率低（不足4%）。适合统计、经管专业同学。建议先通过个人知识赛，再组队参加实践赛。",
+   tags:["市场调查","含个人赛"]},
+  {id:"2026061",name:"全国大学生机器人大赛-Robocon",level:"A",college:"汽车与能源学院",type:"team",solo:false,
+   awardRate:"视赛项而定",difficulty:"hard",recommend:3,
+   desc:"Robocon机器人竞赛，以团队形式完成机器人设计与对抗。",
+   website:"http://www.robocon.org.cn",
+   advice:"团队赛，建议机械、电子、自动化、计算机专业组队。需要制作实体机器人，投入较大。适合有机器人制作经验的同学。",
+   tags:["机器人","Robocon"]},
+  {id:"2026062",name:"日本大学生电动方程式汽车大赛（2026）",level:"A",college:"汽车与能源学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"very-hard",recommend:3,
+   desc:"国际级大学生方程式汽车大赛（电动组）。",
+   website:"https://www.jsae.or.jp/formula",
+   advice:"大型团队赛，建议车辆、机械、电气、经管专业组队。国际赛事，需要大量经费和全年投入。适合对赛车工程有极大热情的同学。",
+   tags:["方程式","电动","国际级"]},
+  {id:"2026063",name:"日本大学生方程式汽车大赛（2026）",level:"A",college:"汽车与能源学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"very-hard",recommend:3,
+   desc:"国际级大学生方程式汽车大赛（燃油组）。",
+   website:"https://www.jsae.or.jp/formula",
+   advice:"大型团队赛，与电动组类似。投入极大，但对车辆工程实践能力提升显著。",
+   tags:["方程式","国际级"]},
+  {id:"2026064",name:"iF设计奖（iF Design Award）",level:"A",college:"设计创意学院",type:"mixed",solo:true,
+   awardRate:"国际设计大奖",difficulty:"hard",recommend:5,
+   desc:"国际顶级设计奖项，学生可参加iF设计新秀奖。",
+   website:"https://ifdesign.com",
+   advice:"⭐ 可个人参赛！适合工业设计、产品设计、视觉传达专业同学。国际顶级设计奖项，获奖对设计职业发展帮助极大。建议有高质量作品集后参赛。",
+   tags:["设计","国际级","可个人"]},
+  {id:"2026065",name:"红点设计大奖（Red Dot Design Award）",level:"A",college:"设计创意学院",type:"mixed",solo:true,
+   awardRate:"国际设计大奖",difficulty:"hard",recommend:5,
+   desc:"国际顶级设计奖项，含红点概念设计奖（学生可参加）。",
+   website:"https://www.red-dot.org",
+   advice:"⭐ 可个人参赛！适合设计类专业同学。红点奖是设计界奥斯卡，获奖对就业和留学帮助极大。建议有成熟设计作品后参赛。",
+   tags:["设计","国际级","可个人"]},
+  {id:"2026066",name:"两岸新锐设计竞赛华灿奖",level:"A",college:"设计创意学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"两岸新锐设计竞赛，涵盖产品设计、视觉传达、数字媒体等。",
+   website:"http://www.huacanaward.org",
+   advice:"⭐ 可个人参赛！适合设计类专业同学。获奖率相对较高，适合作为设计类竞赛的起步选择。",
+   tags:["设计","两岸","可个人"]},
+  {id:"2026067",name:"全国工业设计大赛",level:"A",college:"设计创意学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"全国工业设计领域竞赛。",
+   website:"http://www.chinagdesign.com",
+   advice:"⭐ 可个人参赛！适合工业设计、产品设计专业同学。国内工业设计领域权威赛事，对就业有帮助。",
+   tags:["工业设计","可个人"]},
+  {id:"2026068",name:"未来设计师·全国高校数字艺术设计大赛",level:"A",college:"设计创意学院/艺术与传媒学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"数字艺术设计竞赛，含视觉传达、动画、交互设计等。",
+   website:"http://www.ncda.org.cn",
+   advice:"⭐ 可个人参赛！适合设计、动画、数字媒体专业同学。赛道丰富，可选择与自身技能匹配的方向。获奖率相对友好。",
+   tags:["数字艺术","设计","可个人"]},
+  {id:"2026069",name:"中美青年创客大赛",level:"A",college:"设计创意学院",type:"team",solo:false,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"中美青年创客交流赛事，以团队形式完成创客项目。",
+   website:"http://www.chinaus-maker.org",
+   advice:"团队赛，建议设计、工程、计算机专业组队。创客类竞赛，注重原型制作和现场展示。适合有动手能力和创意想法的同学。",
+   tags:["创客","中美"]},
+  {id:"2026070",name:"国际遗传工程机器大赛（iGEM）",level:"A",college:"生命科学与技术学院",type:"team",solo:false,
+   awardRate:"国际赛事，金奖约30-40%",difficulty:"very-hard",recommend:5,
+   desc:"国际合成生物学顶级赛事，以团队形式完成项目。",
+   website:"https://igem.org",
+   advice:"大型团队赛，建议生物、化学、计算机、设计专业组队。个人可负责湿实验/干实验/HP。金奖率约30-40%，但需要全年投入和较多经费。国际顶级赛事，对留学申请帮助极大。",
+   tags:["合成生物学","国际级","大团队"]},
+  {id:"2026071",name:"全国大学生生命科学竞赛（创新创业类）",level:"A",college:"生命科学与技术学院",type:"team",solo:false,
+   awardRate:"约15-20%",difficulty:"hard",recommend:4,
+   desc:"生命科学领域创新创业竞赛，团队不超过6人。",
+   website:"http://www.culsc.cn",
+   advice:"团队赛，建议生物、医学、药学、食品专业组队。创新创业类需要商业计划书，建议跨学科组队。",
+   tags:["生命科学","创新创业"]},
+  {id:"2026072",name:"全国大学生生命科学竞赛（科学探究类）",level:"A",college:"生命科学与技术学院",type:"team",solo:false,
+   awardRate:"一等奖2.5%，二等奖4%，三等奖12%",difficulty:"hard",recommend:4,
+   desc:"生命科学领域科学探究竞赛，以研究项目形式参赛。",
+   website:"http://www.culsc.cn",
+   advice:"团队赛，建议有实验室经历的同学组队。总获奖率约18.5%，需要有一定的科研基础。适合生物、医学专业同学，建议大二进入实验室后参赛。",
+   tags:["生命科学","科学探究"]},
+  {id:"2026073",name:"第十八届全国大学生数学竞赛",level:"A",college:"数学科学学院",type:"solo",solo:true,
+   awardRate:"初赛一、二、三等奖约8%、12%、15%",difficulty:"hard",recommend:5,
+   desc:"中国数学会主办，个人赛，分数学专业类和非数学专业类。初赛11月，决赛次年3月。",
+   website:"https://www.cms.org.cn/Home/comp/comp/cid/16.html",
+   advice:"⭐ 纯个人赛！适合数学基础扎实的同学。非数学类考高等数学，数学类考数分+高代+解几。初赛获奖率约35%，性价比高。建议提前刷历年真题，大二参赛最佳。",
+   tags:["数学","个人赛","纯个人"]},
+  {id:"2026074",name:"全国大学生数学建模竞赛(2026)",level:"A",college:"数学科学学院",type:"team",solo:false,
+   awardRate:"国家一等奖约0.4%，二等奖约1.7%",difficulty:"very-hard",recommend:5,
+   desc:"3人一队，3天完成建模、求解与论文写作。全国规模最大的基础性学科竞赛之一。",
+   website:"https://cumcm.cnki.net",
+   advice:"团队赛（3人），建议建模、编程、写作分工。国家奖获奖率仅约2%，竞争极为激烈。但含金量极高，是保研加分利器。个人若编程或写作突出，可作为核心队员。建议提前参加校内培训，大二大三参赛。",
+   tags:["数学建模","3人团队"]},
+  {id:"2026075",name:"全国大学生统计建模大赛（2026）",level:"A",college:"数学科学学院",type:"team",solo:false,
+   awardRate:"国奖约3-5%，一等奖<0.3%",difficulty:"hard",recommend:4,
+   desc:"统计建模与应用竞赛，以团队形式完成统计分析报告。",
+   website:"http://www.stats.gov.cn",
+   advice:"团队赛，建议统计、数学、经管专业组队。国奖率约3-5%，一等奖率不足0.3%。适合统计专业同学，建议有R/Python数据分析基础。",
+   tags:["统计建模"]},
+  {id:"2026076",name:"美国ASCE大学生土木工程竞赛",level:"A",college:"土木工程学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"hard",recommend:3,
+   desc:"美国土木工程师学会主办的大学生土木工程竞赛。",
+   website:"https://www.asce.org",
+   advice:"团队赛，建议土木、结构、岩土专业组队。国际赛事，需要英语沟通能力。适合有留学意向的土木专业同学。",
+   tags:["土木工程","国际级"]},
+  {id:"2026077",name:"全国大学生结构设计竞赛",level:"A",college:"土木工程学院",type:"team",solo:false,
+   awardRate:"国赛获奖率约60%（决赛队伍中）",difficulty:"hard",recommend:5,
+   desc:"土木工程学科最高水平学科竞赛，3人一队，完成结构模型制作与加载。",
+   website:"http://www.structurecontest.com",
+   advice:"团队赛（3人），建议土木、力学专业组队。被誉为“土木皇冠上的明珠”，国赛获奖率约60%（但晋级国赛极难）。个人可负责结构分析或模型制作。土木专业必争赛事。",
+   tags:["结构设计","3人团队"]},
+  {id:"2026078",name:"全国高校BIM毕业设计创新大赛",level:"A",college:"土木工程学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"BIM毕业设计作品竞赛。",
+   website:"http://www.bimcontest.com",
+   advice:"团队赛，建议土木、工程管理、建筑专业组队。BIM是建筑行业核心技能，获奖对就业有帮助。适合毕业设计阶段参赛。",
+   tags:["BIM","毕业设计"]},
+  {id:"2026079",name:"“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛（德语组）",level:"A",college:"外国语学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"德语组外语能力大赛，含演讲、写作、阅读等赛项。",
+   website:"https://ucc.fltrp.com",
+   advice:"⭐ 演讲/写作/阅读赛项通常为个人赛！适合德语专业同学。外语类竞赛获奖率相对友好，建议德语专业同学积极参加。",
+   tags:["德语","外语","含个人赛"]},
+  {id:"2026080",name:"“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛（日语组）",level:"A",college:"外国语学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"日语组外语能力大赛，含演讲、写作等赛项。",
+   website:"https://ucc.fltrp.com",
+   advice:"⭐ 个人赛为主！适合日语专业同学。演讲和写作赛项对语言综合能力要求高，建议平时多练习。",
+   tags:["日语","外语","含个人赛"]},
+  {id:"2026081",name:"“外研社·国才杯”“理解当代中国”全国大学生外语能力大赛（英语组）",level:"A",college:"外国语学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"英语组外语能力大赛，含演讲、写作、阅读、翻译等赛项。",
+   website:"https://ucc.fltrp.com",
+   advice:"⭐ 演讲/写作/阅读/翻译赛项均为个人赛！适合英语能力突出的同学。非英语专业也可参加，获奖对留学和就业有帮助。",
+   tags:["英语","外语","含个人赛"]},
+  {id:"2026082",name:"第31届“21世纪杯”全国英语演讲比赛",level:"A",college:"外国语学院",type:"solo",solo:true,
+   awardRate:"约10-15%",difficulty:"medium",recommend:4,
+   desc:"中国日报社主办，全国英语演讲比赛。",
+   website:"https://contest.i21st.cn",
+   advice:"⭐ 纯个人赛！适合英语口语表达能力强的同学。建议提前准备定题演讲和即兴演讲。获奖对英语能力和自信心提升帮助大。",
+   tags:["英语演讲","个人赛","纯个人"]},
+  {id:"2026083",name:"第九届“外教社杯”全国高校学生跨文化能力大赛",level:"A",college:"外国语学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:3,
+   desc:"跨文化能力大赛，含个人赛和团队赛。",
+   website:"http://www.sflep.com",
+   advice:"⭐ 含个人赛！适合外语专业、国际关系专业同学。跨文化能力是全球化时代重要素养，适合有国际视野的同学。",
+   tags:["跨文化","外语","含个人赛"]},
+  {id:"2026084",name:"全国大学生英语竞赛",level:"A",college:"外国语学院",type:"solo",solo:true,
+   awardRate:"总获奖率86‰，决赛获奖率1‰",difficulty:"medium",recommend:5,
+   desc:"全国唯一的大学生英语综合能力竞赛，初赛4月，决赛5月。分A/B/C/D四类。",
+   website:"http://www.chinaneccs.cn",
+   advice:"⭐ 纯个人赛！非英语专业报C类，英语专业报B类。总获奖率约8.6%，性价比极高。建议刷历年真题，听力占30分。大一大二即可参加。",
+   tags:["英语","个人赛","纯个人"]},
+  {id:"2026085",name:"全国大学生光电设计竞赛",level:"A",college:"物理科学与工程学院",type:"team",solo:false,
+   awardRate:"创意赛道一等奖约1.16%",difficulty:"hard",recommend:4,
+   desc:"光电领域竞赛，含创意赛和初创赛。创意赛每队不超过3人。",
+   website:"http://www.optcontest.com",
+   advice:"团队赛（创意赛3人），建议光电、物理、电子专业组队。一等奖率仅约1.16%，难度较大。个人可负责光学设计或电路。光电行业就业前景好。",
+   tags:["光电","设计"]},
+  {id:"2026086",name:"全国大学生物理实验竞赛（创新）（2026）",level:"A",college:"物理科学与工程学院",type:"mixed",solo:true,
+   awardRate:"一等奖10%、二等奖20%、三等奖30%",difficulty:"medium",recommend:5,
+   desc:"物理实验创新竞赛，可以个人或小组形式申报，学生人数不超过5人。讲课类不超过3人。",
+   website:"http://www.phycontest.com",
+   advice:"⭐ 可个人申报！适合物理实验基础扎实、有创新实验想法的同学。总获奖率约60%，在A类竞赛中属于非常友好的。强烈推荐物理专业同学参加。",
+   tags:["物理实验","创新","可个人"]},
+  {id:"2026087",name:"第三届全国大学生职业规划大赛",level:"A",college:"学生工作部",type:"solo",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"全国大学生职业规划大赛，以个人职业规划方案参赛。",
+   website:"https://www.ncss.cn",
+   advice:"⭐ 纯个人赛！适合有清晰职业规划、表达能力强的大二大三同学。获奖对个人职业发展有实际帮助，建议认真准备职业规划书。",
+   tags:["职业规划","个人赛","纯个人"]},
+  {id:"2026088",name:"全国大学生医学创新大赛暨“一带一路”国际竞赛",level:"A",college:"医学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"hard",recommend:3,
+   desc:"医学创新竞赛，含个人和团队赛形式。",
+   website:"http://www.cmda.org.cn",
+   advice:"⭐ 部分赛道可个人参赛！适合医学、药学专业同学。医学类竞赛对临床和科研能力提升有帮助。",
+   tags:["医学创新","国际级","含个人赛"]},
+  {id:"2026089",name:"大学生数字媒体科技作品及创意竞赛",level:"A",college:"艺术与传媒学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"数字媒体作品竞赛，涵盖影视、动画、交互、游戏等。",
+   website:"http://www.dmtc.org.cn",
+   advice:"⭐ 可个人参赛！适合数媒、动画、影视专业同学。作品导向，适合有创意和制作能力的同学。获奖率相对友好。",
+   tags:["数字媒体","创意","可个人"]},
+  {id:"2026090",name:"第八届中华经典诵写讲大赛“诵读中国”经典诵读大赛",level:"A",college:"艺术与传媒学院",type:"solo",solo:true,
+   awardRate:"约20-30%",difficulty:"easy",recommend:3,
+   desc:"中华经典诵读大赛，以个人诵读作品参赛。",
+   website:"http://www.songduzg.com",
+   advice:"⭐ 纯个人赛！适合播音主持、汉语言文学专业或朗诵爱好者。难度较低，适合对朗诵有热情的同学。",
+   tags:["诵读","经典","个人赛"]},
+  {id:"2026091",name:"米兰设计周-中国高校设计学科师生优秀作品展及专项赛",level:"A",college:"艺术与传媒学院/设计创意学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"米兰设计周中国高校设计作品展，含多个设计类别。",
+   website:"http://www.milandesignweek.cn",
+   advice:"⭐ 可个人参赛！适合设计类专业同学。国际设计周平台，获奖作品有机会在米兰展出。建议有成熟设计作品后参赛。",
+   tags:["设计","米兰","可个人"]},
+  {id:"2026092",name:"全国大学生广告艺术大赛",level:"A",college:"艺术与传媒学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:4,
+   desc:"大广赛，含平面、影视、动画、策划案等类别。平面/文案类不超过2人。",
+   website:"https://www.sun-ada.net",
+   advice:"⭐ 平面/文案类可1-2人参赛！适合广告、设计、新闻传播专业同学。命题来自真实品牌，获奖对进入广告行业有帮助。",
+   tags:["广告","设计","含个人赛"]},
+  {id:"2026093",name:"中国好创意暨全国数字艺术设计大赛",level:"A",college:"艺术与传媒学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:4,
+   desc:"数字艺术设计竞赛，涵盖视觉传达、动画、交互等。",
+   website:"http://www.cdec.org.cn",
+   advice:"⭐ 可个人参赛！适合设计、动画、数媒专业同学。赛道丰富，获奖率相对友好，适合作为设计类竞赛的起步。",
+   tags:["数字艺术","设计","可个人"]},
+
+  // ===== B 级（精选） =====
+  {id:"2026094",name:"全国大学生微结构摄影大赛（上海赛区）",level:"B",college:"材料科学与工程学院",type:"mixed",solo:true,
+   awardRate:"省部级约30%",difficulty:"easy",recommend:3,
+   desc:"微结构摄影竞赛，以个人作品参赛为主。",
+   website:"http://www.csm.org.cn",
+   advice:"⭐ 纯个人赛！适合材料、物理、化学专业同学。难度较低，适合作为材料类竞赛的入门选择。",
+   tags:["微结构","摄影","个人赛"]},
+  {id:"2026095",name:"上海市先进材料创新创意大赛",level:"B",college:"材料科学与工程学院",type:"mixed",solo:true,
+   awardRate:"省部级约30%",difficulty:"easy",recommend:3,
+   desc:"省部级材料创新创意竞赛。",
+   website:"http://www.shsm.org.cn",
+   advice:"⭐ 可个人参赛！适合材料专业同学。省部级赛事，获奖相对容易，可作为国赛热身。",
+   tags:["材料","省部级","可个人"]},
+  {id:"2026105",name:"FDI 模拟投资仲裁竞赛(FDI Moot)",level:"B",college:"法学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"hard",recommend:3,
+   desc:"国际投资仲裁模拟法庭竞赛，以团队形式参赛。",
+   website:"https://www.fdimoot.org",
+   advice:"团队赛，建议法学、英语专业组队。国际模拟法庭赛事，对法学英语要求极高。个人可负责书状写作或口头辩论。适合有国际法基础的同学。",
+   tags:["模拟法庭","国际级","法学"]},
+  {id:"2026106",name:"国际公法模拟法庭竞赛(Phillip C. Jessup)",level:"B",college:"法学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"very-hard",recommend:4,
+   desc:"国际法领域最著名的模拟法庭竞赛。",
+   website:"https://www.ilsa.org",
+   advice:"团队赛，建议法学、英语专业组队。国际法领域顶级赛事，对法学英语和法律研究能力要求极高。适合有扎实国际法基础的同学。",
+   tags:["模拟法庭","国际法","法学"]},
+  {id:"2026107",name:"国际商事模拟仲裁庭辩论赛(Vis Moot)",level:"B",college:"法学院",type:"team",solo:false,
+   awardRate:"国际赛事",difficulty:"very-hard",recommend:4,
+   desc:"国际商事仲裁模拟法庭竞赛。",
+   website:"https://www.vismoot.org",
+   advice:"团队赛，建议法学、英语专业组队。国际商事仲裁领域权威赛事，对仲裁法和英语能力要求高。",
+   tags:["模拟法庭","商事仲裁","法学"]},
+  {id:"2026110",name:"全国法律英语大赛",level:"B",college:"法学院",type:"mixed",solo:true,
+   awardRate:"约20-30%",difficulty:"medium",recommend:3,
+   desc:"法律英语能力竞赛，含个人赛形式。",
+   website:"http://www.legenglish.org",
+   advice:"⭐ 可个人参赛！适合法学、英语专业同学。法律英语是涉外法律人才的核心能力，获奖对进入涉外律所有帮助。",
+   tags:["法律英语","含个人赛"]},
+  {id:"2026112",name:"全国大学生地球物理知识竞赛(2026)",level:"B",college:"海洋与地球科学学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"地球物理知识竞赛，含个人赛和团体赛。",
+   website:"http://www.cgs.org.cn",
+   advice:"⭐ 含个人赛！适合地球物理、地质专业同学。知识竞赛类，适合理论基础扎实的同学。",
+   tags:["地球物理","含个人赛"]},
+  {id:"2026113",name:"全国大学生地质技能竞赛(2026)",level:"B",college:"海洋与地球科学学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"medium",recommend:3,
+   desc:"地质技能竞赛，含野外地质技能、地质标本鉴定等。",
+   website:"http://www.geosociety.org.cn",
+   advice:"团队赛为主，部分环节可个人。适合地质专业同学。野外技能类竞赛，适合动手能力强的同学。",
+   tags:["地质技能"]},
+  {id:"2026131",name:"全国化学类专业大学生科技活动交流",level:"B",college:"化学科学与工程学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"easy",recommend:3,
+   desc:"化学类专业科技活动交流，含个人学术报告。",
+   website:"http://www.chemsoc.org.cn",
+   advice:"⭐ 可个人参加学术报告！适合有科研经历的化学专业同学。学术交流类，适合有研究成果的同学。",
+   tags:["化学","学术交流","可个人"]},
+  {id:"2026141",name:"Apple WWDC Students Scholarship",level:"B",college:"计算机科学与技术学院",type:"solo",solo:true,
+   awardRate:"全球约350人",difficulty:"hard",recommend:4,
+   desc:"苹果全球开发者大会学生奖学金，以个人作品申请。",
+   website:"https://developer.apple.com/wwdc/scholarships",
+   advice:"⭐ 纯个人赛！适合有iOS/macOS开发作品的同学。全球仅约350人获奖，难度较大。建议提前准备Swift Playgrounds作品。",
+   tags:["Apple","开发","个人赛"]},
+  {id:"2026143",name:"CCF 大学生计算机系统与程序设计竞赛 (CCSP)",level:"B",college:"计算机科学与技术学院",type:"solo",solo:true,
+   awardRate:"约30-40%",difficulty:"hard",recommend:4,
+   desc:"中国计算机学会主办，个人赛，考察算法与系统能力。",
+   website:"https://ccsp.ccf.org.cn",
+   advice:"⭐ 纯个人赛！适合算法基础好、有系统编程能力的同学。CCF主办，含金量高。适合有CSP认证基础的同学。",
+   tags:["程序设计","CCF","个人赛"]},
+  {id:"2026144",name:"CCPC 全国大学生程序设计竞赛",level:"B",college:"计算机科学与技术学院",type:"team",solo:false,
+   awardRate:"区域赛约10-15%",difficulty:"hard",recommend:4,
+   desc:"3人一队，5小时上机编程，与ICPC类似。",
+   website:"https://ccpc.io",
+   advice:"团队赛（3人），建议算法功底扎实的同学组队。与ICPC类似但难度稍低。个人可专注某一算法方向。",
+   tags:["程序设计","3人团队"]},
+  {id:"2026145",name:"蓝桥杯全国软件和信息技术专业人才大赛",level:"B",college:"计算机科学与技术学院",type:"solo",solo:true,
+   awardRate:"国赛一等奖0.5%、二等奖2%、三等奖3.5%",difficulty:"medium",recommend:5,
+   desc:"蓝桥杯，含个人赛（软件类、电子类）和团队赛。",
+   website:"https://dasai.lanqiao.cn",
+   advice:"⭐ 软件类为个人赛！适合有算法基础的同学。省赛获奖率较高（约50%），国赛获奖率约6%。建议刷蓝桥杯历年真题，大一大二即可参加。性价比极高。",
+   tags:["程序设计","蓝桥杯","个人赛"]},
+  {id:"2026166",name:"OnSite 自动驾驶算法挑战赛",level:"B",college:"交通学院",type:"team",solo:false,
+   awardRate:"约20-30%",difficulty:"hard",recommend:3,
+   desc:"自动驾驶算法挑战赛。",
+   website:"http://www.onsite.org.cn",
+   advice:"团队赛，建议交通、计算机、车辆专业组队。自动驾驶是热门方向，适合有算法基础的同学。",
+   tags:["自动驾驶","算法"]},
+  {id:"2026182",name:"第十七届丘成桐大学生数学竞赛",level:"B",college:"数学科学学院",type:"solo",solo:true,
+   awardRate:"极高难度",difficulty:"very-hard",recommend:3,
+   desc:"丘成桐大学生数学竞赛，个人赛，涵盖分析、代数、几何等方向。",
+   website:"https://www.yau-awards.com",
+   advice:"⭐ 纯个人赛！适合数学专业顶尖同学。难度极大，建议有竞赛基础。获奖对申请顶尖数学研究生项目帮助极大。",
+   tags:["数学","丘成桐","个人赛"]},
+  {id:"2026183",name:"美国大学生数学建模竞赛（2026）",level:"B",college:"数学科学学院",type:"team",solo:false,
+   awardRate:"F奖约1%，M奖约6%",difficulty:"hard",recommend:4,
+   desc:"MCM/ICM，3人一队，4天完成英文建模论文。",
+   website:"https://www.comap.com",
+   advice:"团队赛（3人），建议建模、编程、英文写作分工。个人若写作强，可负责论文。F奖（特等奖提名）约1%，M奖（一等奖）约6%。国际赛事，对留学申请有帮助。",
+   tags:["数学建模","美赛","3人团队"]},
+  {id:"2026195",name:"“外教社·词达人杯”全国大学生英语词汇能力大赛",level:"B",college:"外国语学院",type:"solo",solo:true,
+   awardRate:"约30%",difficulty:"easy",recommend:3,
+   desc:"英语词汇能力竞赛，个人赛。",
+   website:"http://www.sflep.com",
+   advice:"⭐ 纯个人赛！适合词汇量大的同学。难度较低，线上参赛，适合作为英语类竞赛的入门。",
+   tags:["英语词汇","个人赛"]},
+  {id:"2026212",name:"国际大学生物理竞赛（2026）",level:"B",college:"物理科学与工程学院",type:"mixed",solo:true,
+   awardRate:"国际赛事",difficulty:"hard",recommend:3,
+   desc:"国际大学生物理竞赛，含个人赛。",
+   website:"http://www.iuphys.org",
+   advice:"⭐ 可个人参赛！适合物理专业同学。国际赛事，需要英语能力。适合有物理竞赛基础的同学。",
+   tags:["物理","国际级","含个人赛"]},
+  {id:"2026213",name:"全国部分地区大学生物理竞赛（上海赛区）",level:"B",college:"物理科学与工程学院",type:"solo",solo:true,
+   awardRate:"约30-40%",difficulty:"medium",recommend:4,
+   desc:"上海赛区物理竞赛，个人赛。",
+   website:"http://www.sps.org.cn",
+   advice:"⭐ 纯个人赛！适合物理基础扎实的同学。上海赛区赛事，获奖率相对友好。建议物理专业大二同学参加。",
+   tags:["物理","上海赛区","个人赛"]},
+  {id:"2026214",name:"中国大学生物理学术竞赛（2026）",level:"B",college:"物理科学与工程学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"hard",recommend:3,
+   desc:"CUPT，以团队形式进行物理学术辩论。",
+   website:"http://www.cupt.org.cn",
+   advice:"团队赛，建议物理专业组队。学术辩论形式，对物理理解和表达能力要求高。个人可负责某一题目的研究与辩论。",
+   tags:["物理学术","辩论"]},
+  {id:"2026229",name:"蓝桥杯大赛视觉艺术设计赛",level:"B",college:"艺术与传媒学院",type:"mixed",solo:true,
+   awardRate:"约30%",difficulty:"easy",recommend:3,
+   desc:"蓝桥杯视觉艺术设计赛，含个人赛。",
+   website:"https://dasai.lanqiao.cn",
+   advice:"⭐ 可个人参赛！适合设计、数媒专业同学。设计类赛道，获奖率相对友好，适合作为设计类竞赛的起步。",
+   tags:["视觉艺术","设计","含个人赛"]},
+  {id:"2026241",name:"全国土木工程材料作品设计大赛",level:"C",college:"材料科学与工程学院",type:"team",solo:false,
+   awardRate:"校级约50%",difficulty:"easy",recommend:2,
+   desc:"校级土木工程材料作品设计竞赛。",
+   website:"https://mse.tongji.edu.cn",
+   advice:"团队赛，建议材料、土木专业组队。校级赛事，适合低年级同学练手，积累竞赛经验。",
+   tags:["土木材料","校级"]},
+  {id:"2026244",name:"同济大学化学知识竞赛",level:"C",college:"化学科学与工程学院",type:"solo",solo:true,
+   awardRate:"校级约50%",difficulty:"easy",recommend:2,
+   desc:"校级化学知识竞赛，个人赛。",
+   website:"https://chem.tongji.edu.cn",
+   advice:"⭐ 纯个人赛！适合化学专业同学。校级赛事，难度低，适合大一新生入门。",
+   tags:["化学知识","校级","个人赛"]},
+  {id:"2026246",name:"济时开讲",level:"C",college:"马克思主义学院",type:"solo",solo:true,
+   awardRate:"校级约50%",difficulty:"easy",recommend:2,
+   desc:"校级演讲/宣讲类竞赛，个人赛。",
+   website:"https://marx.tongji.edu.cn",
+   advice:"⭐ 纯个人赛！适合表达能力强的同学。校级赛事，适合锻炼演讲和宣讲能力。",
+   tags:["演讲","校级","个人赛"]},
+  {id:"2026252",name:"同济大学创新物理实验设计竞赛（2026）",level:"C",college:"物理科学与工程学院",type:"mixed",solo:true,
+   awardRate:"校级约50%",difficulty:"easy",recommend:2,
+   desc:"校级物理实验创新设计竞赛，可个人参赛。",
+   website:"https://physics.tongji.edu.cn",
+   advice:"⭐ 可个人参赛！适合物理实验基础好的同学。校级赛事，适合作为国赛热身。",
+   tags:["物理实验","校级","可个人"]},
+  {id:"2026253",name:"同济大学医学院2026年医学生临床综合技能竞赛",level:"C",college:"医学院",type:"mixed",solo:true,
+   awardRate:"校级约50%",difficulty:"easy",recommend:2,
+   desc:"校级医学临床技能竞赛，含个人赛环节。",
+   website:"https://med.tongji.edu.cn",
+   advice:"⭐ 含个人赛！适合医学专业同学。校级赛事，适合低年级医学专业同学入门。",
+   tags:["临床技能","校级","含个人赛"]},
+  {id:"2026255",name:"“汇川杯”全国智能自动化创新大赛",level:"C",college:"中德工程学院",type:"team",solo:false,
+   awardRate:"约30%",difficulty:"easy",recommend:2,
+   desc:"智能自动化创新竞赛。",
+   website:"http://www.inovance.com",
+   advice:"团队赛，建议自动化、机械、电气专业组队。企业赛事，难度较低，适合作为自动化类竞赛的入门。",
+   tags:["智能自动化","创新"]},
+];
+
+// ========== 状态 ==========
+let currentFilter = 'all';
+let currentSearch = '';
+
+// ========== 工具函数 ==========
+function difficultyLabel(d) {
+  const map = {
+    'easy': { text: '入门', cls: 'easy' },
+    'medium': { text: '中等', cls: 'medium' },
+    'hard': { text: '较难', cls: 'hard' },
+    'very-hard': { text: '极难', cls: 'very-hard' }
+  };
+  return map[d] || { text: '中等', cls: 'medium' };
+}
+
+function recommendStars(r) {
+  const stars = '⭐'.repeat(r);
+  const cls = r >= 4 ? 'rec-high' : (r >= 3 ? 'rec-medium' : 'rec-low');
+  return { stars, cls };
+}
+
+function typeLabel(type) {
+  if (type === 'solo') return { text: '👤 个人赛', cls: 'solo' };
+  if (type === 'team') return { text: '👥 团队赛', cls: 'team' };
+  return { text: '👤👥 个人/团队均可', cls: 'mixed' };
+}
+
+// ========== 渲染 ==========
+function getFiltered() {
+  let list = competitions;
+  if (currentFilter === 'solo') {
+    list = list.filter(c => c.solo);
+  } else if (currentFilter === 'team') {
+    list = list.filter(c => c.type === 'team');
+  } else if (currentFilter !== 'all') {
+    list = list.filter(c => c.level === currentFilter);
+  }
+  if (currentSearch.trim()) {
+    const q = currentSearch.trim().toLowerCase();
+    list = list.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      c.college.toLowerCase().includes(q) ||
+      (c.tags || []).some(t => t.toLowerCase().includes(q)) ||
+      c.desc.toLowerCase().includes(q)
+    );
+  }
+  return list;
+}
+
+function groupByLevel(list) {
+  const groups = { 'A+': [], 'A': [], 'B': [], 'C': [] };
+  list.forEach(c => {
+    if (groups[c.level]) groups[c.level].push(c);
+  });
+  return groups;
+}
+
+function render() {
+  const list = getFiltered();
+  const groups = groupByLevel(list);
+  const container = document.getElementById('contentContainer');
+  let html = '';
+
+  const levelOrder = ['A+', 'A', 'B', 'C'];
+  const levelNames = { 'A+': 'A+ 级竞赛', 'A': 'A 级竞赛', 'B': 'B 级竞赛', 'C': 'C 级竞赛' };
+
+  let hasAny = false;
+  levelOrder.forEach(level => {
+    const items = groups[level];
+    if (!items || items.length === 0) return;
+    hasAny = true;
+    html += `<div class="section-title"><h2>${levelNames[level]}</h2><div class="line"></div><span class="count">${items.length} 项</span></div>`;
+    html += `<div class="grid">`;
+    items.forEach(c => {
+      const tl = typeLabel(c.type);
+      const levelCls = 'level-' + c.level.replace('+', 'plus');
+      const dl = difficultyLabel(c.difficulty);
+      const rec = recommendStars(c.recommend);
+      const cardCls = c.solo ? 'solo-friendly' : (c.type === 'team' ? 'team-friendly' : '');
+
+      html += `
+        <div class="card ${cardCls}">
+          <div class="card-header">
+            <span class="card-id">${c.id}</span>
+            <span class="card-level ${levelCls}">${c.level}</span>
+          </div>
+          <h3>${c.name}</h3>
+          <div class="college">🏛 ${c.college}</div>
+          <div class="meta-row">
+            <span class="tag ${tl.cls}">${tl.text}</span>
+            ${(c.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+
+          <!-- 竞赛指标 -->
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">获奖比例</div>
+              <div class="metric-value" style="font-size:12px;">${c.awardRate || '—'}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">难度</div>
+              <div class="metric-value ${dl.cls}">${dl.text}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">推荐度</div>
+              <div class="metric-value ${rec.cls}">${rec.stars}</div>
+            </div>
+          </div>
+
+          <div class="desc">${c.desc}</div>
+          ${c.advice ? `<div class="advice-box"><strong>💡 参赛建议：</strong>${c.advice}</div>` : ''}
+          <div class="links">
+            <a href="${c.website}" target="_blank" rel="noopener">🔗 官网/报名入口</a>
+            ${c.solo ? '<a href="#" class="gold-link" onclick="return false;">⭐ 个人友好</a>' : ''}
+            ${c.type === 'team' ? '<a href="#" class="team-link" onclick="return false;">🟣 团体赛</a>' : ''}
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  });
+
+  if (!hasAny) {
+    html = `<div class="empty-state"><div class="icon">🔍</div><p>没有找到匹配的竞赛，请尝试其他关键词或筛选条件。</p></div>`;
+  }
+
+  container.innerHTML = html;
+
+  // 更新统计
+  document.getElementById('statTotal').textContent = competitions.length;
+  document.getElementById('statSolo').textContent = competitions.filter(c => c.solo).length;
+  document.getElementById('statTeam').textContent = competitions.filter(c => c.type === 'team').length;
+  document.getElementById('statVisible').textContent = list.length;
+}
+
+// ========== 事件 ==========
+document.getElementById('searchInput').addEventListener('input', e => {
+  currentSearch = e.target.value;
+  render();
+});
+
+document.getElementById('filterChips').addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (!chip) return;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  currentFilter = chip.dataset.filter;
+  render();
+});
+
+// 返回顶部
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 400);
+});
+backTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 初始化
+render();
+</script>
+</body>
+</html>
